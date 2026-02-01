@@ -797,8 +797,10 @@
             z-index: 10000;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            padding-top: 5rem;
             animation: fadeIn 0.5s ease;
+            overflow: hidden;
         }
 
         .response-screen.active {
@@ -811,6 +813,8 @@
             text-align: center;
             padding: 2rem;
             animation: zoomIn 0.5s ease;
+            position: relative;
+            z-index: 101;
         }
 
         @keyframes zoomIn {
@@ -840,14 +844,13 @@
 
         /* Dancing Couple Animation */
         .dancing-couple {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
             display: flex;
             gap: 30px;
             align-items: flex-end;
-            z-index: 100;
+            z-index: 101;
+            margin-top: 3rem;
+            justify-content: center;
         }
 
         .dancer {
@@ -1060,6 +1063,215 @@
                 transform: translateY(-200px) scale(1.5);
                 opacity: 0;
             }
+        }
+
+        /* Rocket Animation */
+        .rocket {
+            position: fixed;
+            font-size: 60px;
+            z-index: 99;
+            animation: rocketFly 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--primary-glow));
+        }
+
+        @keyframes rocketFly {
+            0% {
+                left: -100px;
+                bottom: 10%;
+                transform: rotate(45deg);
+            }
+            25% {
+                left: 30%;
+                bottom: 70%;
+                transform: rotate(0deg);
+            }
+            50% {
+                left: 70%;
+                bottom: 80%;
+                transform: rotate(-20deg);
+            }
+            75% {
+                left: 90%;
+                bottom: 60%;
+                transform: rotate(-45deg);
+            }
+            100% {
+                left: 110%;
+                bottom: 20%;
+                transform: rotate(-60deg);
+            }
+        }
+
+        .rocket-trail {
+            position: fixed;
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(180deg, transparent, var(--primary-glow), var(--secondary-glow));
+            border-radius: 2px;
+            z-index: 98;
+            animation: trail 8s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        @keyframes trail {
+            0% {
+                left: -100px;
+                bottom: 10%;
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                left: 110%;
+                bottom: 20%;
+                opacity: 0;
+            }
+        }
+
+        /* UFO Animation */
+        .ufo {
+            position: fixed;
+            z-index: 99;
+            animation: ufoFly 12s linear infinite;
+        }
+
+        .ufo-body {
+            width: 80px;
+            height: 30px;
+            background: linear-gradient(180deg, var(--secondary-glow), var(--tertiary-glow));
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 30px var(--secondary-glow);
+        }
+
+        .ufo-dome {
+            width: 40px;
+            height: 20px;
+            background: linear-gradient(180deg, rgba(0, 217, 255, 0.5), transparent);
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 2px solid var(--secondary-glow);
+        }
+
+        .ufo-light {
+            width: 100px;
+            height: 80px;
+            background: linear-gradient(180deg, rgba(0, 217, 255, 0.3), transparent);
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+            animation: lightBeam 1s ease-in-out infinite;
+        }
+
+        @keyframes lightBeam {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes ufoFly {
+            0% {
+                left: -100px;
+                top: 20%;
+                transform: rotate(0deg);
+            }
+            50% {
+                left: 110%;
+                top: 30%;
+                transform: rotate(10deg);
+            }
+            51% {
+                left: 110%;
+                top: 30%;
+                transform: rotate(-180deg);
+            }
+            100% {
+                left: -100px;
+                top: 20%;
+                transform: rotate(-190deg);
+            }
+        }
+
+        /* Shooting Stars */
+        .shooting-star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            z-index: 98;
+            box-shadow: 0 0 10px white;
+            animation: shootingStar 2s linear infinite;
+        }
+
+        @keyframes shootingStar {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-300px) translateY(300px);
+                opacity: 0;
+            }
+        }
+
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, white, transparent);
+            right: 3px;
+            top: 0;
+        }
+
+        /* Planet Animation */
+        .planet {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            z-index: 98;
+            animation: planetOrbit 20s linear infinite;
+            box-shadow: 0 0 40px;
+        }
+
+        .planet.saturn {
+            background: linear-gradient(135deg, #f4c542, #e8a726);
+            box-shadow: 0 0 40px #f4c542;
+            top: 15%;
+        }
+
+        .planet.saturn::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 30px;
+            border: 3px solid rgba(244, 197, 66, 0.6);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(75deg);
+        }
+
+        .planet.mars {
+            background: linear-gradient(135deg, #ff6b6b, #c92a2a);
+            box-shadow: 0 0 40px #ff6b6b;
+            bottom: 20%;
+        }
+
+        @keyframes planetOrbit {
+            0% { left: -120px; }
+            50% { left: 50%; }
+            100% { left: 110%; }
         }
 
         /* Responsive */
@@ -1313,8 +1525,7 @@
                 <div style="background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow), var(--tertiary-glow)); 
                             -webkit-background-clip: text; 
                             -webkit-text-fill-color: transparent; 
-                            background-clip: text;
-                            margin-bottom: 3rem;">
+                            background-clip: text;">
                     ⚡ PROTOCOL ACTIVATED ⚡
                     <br><br>
                     CONNECTION ESTABLISHED
@@ -1327,6 +1538,11 @@
                         VALENTINE'S DAY SEQUENCE INITIATED...
                     </div>
                 </div>
+            `;
+            
+            // Add dancing couple below the text
+            const coupleDiv = document.createElement('div');
+            coupleDiv.innerHTML = `
                 <div class="dancing-couple">
                     <div class="dancer boy">
                         <div class="head"></div>
@@ -1348,10 +1564,12 @@
                     </div>
                 </div>
             `;
+            responseMessage.appendChild(coupleDiv);
             
             responseScreen.classList.add('active');
             createFireworks();
             createFloatingHearts();
+            createSpaceElements();
         }
 
         // Create Fireworks
@@ -1395,7 +1613,7 @@
                 heart.className = 'love-heart';
                 heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
                 heart.style.left = (30 + Math.random() * 40) + '%';
-                heart.style.bottom = '20%';
+                heart.style.bottom = '5%';
                 heart.style.animationDelay = Math.random() * 2 + 's';
                 heart.style.animationDuration = (2 + Math.random() * 2) + 's';
                 
@@ -1403,6 +1621,63 @@
                 
                 setTimeout(() => heart.remove(), 4000);
             }, 400);
+        }
+
+        // Create Space Elements (Rockets, UFOs, Planets, Shooting Stars)
+        function createSpaceElements() {
+            const responseScreen = document.getElementById('responseScreen');
+            
+            // Create Rockets
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const rocket = document.createElement('div');
+                    rocket.className = 'rocket';
+                    rocket.textContent = '🚀';
+                    rocket.style.animationDelay = i * 2 + 's';
+                    responseScreen.appendChild(rocket);
+                    
+                    // Add rocket trail
+                    for (let j = 0; j < 5; j++) {
+                        const trail = document.createElement('div');
+                        trail.className = 'rocket-trail';
+                        trail.style.animationDelay = (i * 2 + j * 0.1) + 's';
+                        responseScreen.appendChild(trail);
+                    }
+                }, i * 3000);
+            }
+            
+            // Create UFO
+            const ufo = document.createElement('div');
+            ufo.className = 'ufo';
+            ufo.innerHTML = `
+                <div class="ufo-dome"></div>
+                <div class="ufo-body"></div>
+                <div class="ufo-light"></div>
+            `;
+            responseScreen.appendChild(ufo);
+            
+            // Create Planets
+            const saturn = document.createElement('div');
+            saturn.className = 'planet saturn';
+            saturn.style.animationDelay = '2s';
+            responseScreen.appendChild(saturn);
+            
+            const mars = document.createElement('div');
+            mars.className = 'planet mars';
+            mars.style.animationDelay = '8s';
+            responseScreen.appendChild(mars);
+            
+            // Create Shooting Stars
+            setInterval(() => {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 50 + '%';
+                star.style.animationDelay = Math.random() + 's';
+                responseScreen.appendChild(star);
+                
+                setTimeout(() => star.remove(), 2000);
+            }, 1000);
         }
 
         // Handle No Response (make button run away)
