@@ -44,6 +44,17 @@
             animation: cursorPulse 2s ease-in-out infinite;
         }
 
+        .cursor-orbit {
+            width: 6px;
+            height: 6px;
+            background: var(--primary-glow);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
         @keyframes cursorPulse {
             0%, 100% { transform: scale(1) rotate(0deg); }
             50% { transform: scale(1.2) rotate(180deg); }
@@ -121,6 +132,36 @@
             }
         }
 
+        /* Matrix Rain Effect */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: var(--secondary-glow);
+            text-shadow: 0 0 5px var(--secondary-glow);
+            animation: matrixFall linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes matrixFall {
+            0% { top: -100%; opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
         /* Grid Background */
         .cyber-grid {
             position: fixed;
@@ -142,6 +183,61 @@
         @keyframes gridScroll {
             0% { background-position: 0 0; }
             100% { background-position: 0 50px; }
+        }
+
+        /* Geometric Shapes */
+        .geometric-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border: 2px solid;
+            animation: shapeFloat 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        .shape.triangle {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 50px solid var(--primary-glow);
+            border-top: none;
+        }
+
+        .shape.circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border-color: var(--secondary-glow);
+        }
+
+        .shape.square {
+            width: 30px;
+            height: 30px;
+            border-color: var(--tertiary-glow);
+            transform: rotate(45deg);
+        }
+
+        @keyframes shapeFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% {
+                transform: translateY(-100px) translateX(var(--x-offset)) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         /* Animated Background */
@@ -448,6 +544,42 @@
             animation: scanlineShift 10s linear infinite;
         }
 
+        .data-stream {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .data-bit {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            color: var(--secondary-glow);
+            opacity: 0;
+            animation: bitStream 4s linear infinite;
+        }
+
+        @keyframes bitStream {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+
         @keyframes scanlineShift {
             0% { transform: translateY(0); }
             100% { transform: translateY(20px); }
@@ -484,6 +616,7 @@
             justify-content: center;
             margin: 2rem 0;
             animation: fadeIn 1s ease 5s backwards;
+            position: relative;
         }
 
         .heart {
@@ -491,6 +624,43 @@
             height: 100px;
             position: relative;
             animation: heartbeat 1.5s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .heart-pulse {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 3px solid var(--primary-glow);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s ease-out infinite;
+            opacity: 0;
+        }
+
+        .heart-pulse:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .heart-pulse:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .heart-pulse:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
         }
 
         @keyframes heartbeat {
@@ -560,16 +730,48 @@
             transition: all 0.3s ease;
         }
 
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
         .btn-yes {
             border-color: var(--primary-glow);
             color: var(--primary-glow);
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 0, 128, 0.8);
+            }
         }
 
         .btn-yes:hover {
             background: var(--primary-glow);
             color: white;
-            box-shadow: 0 0 40px var(--primary-glow);
-            transform: scale(1.1);
+            box-shadow: 
+                0 0 40px var(--primary-glow),
+                0 0 80px var(--primary-glow),
+                inset 0 0 20px rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) translateY(-5px);
+            animation: none;
         }
 
         .btn-no {
@@ -580,6 +782,7 @@
         .btn-no:hover {
             transform: scale(0.95);
             opacity: 0.5;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
         }
 
         /* Response Screen */
@@ -678,6 +881,9 @@
     <!-- Custom Cursor -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
+    <div class="cursor-orbit" id="orbit1"></div>
+    <div class="cursor-orbit" id="orbit2"></div>
+    <div class="cursor-orbit" id="orbit3"></div>
 
     <!-- Scanlines -->
     <div class="scanlines"></div>
@@ -688,6 +894,8 @@
     <!-- Animated Background -->
     <div class="stars"></div>
     <div class="particles"></div>
+    <div class="matrix-rain"></div>
+    <div class="geometric-shapes"></div>
     <div class="nebula"></div>
 
     <!-- Loading Screen -->
@@ -706,6 +914,7 @@
         </header>
 
         <div class="holo-card">
+            <div class="data-stream" id="dataStream"></div>
             <div class="card-content">
                 <div class="message">
                     <span class="highlight">QUANTUM ENTANGLEMENT DETECTED</span>
@@ -722,6 +931,10 @@
                 </div>
 
                 <div class="heart-container">
+                    <div class="heart-pulse"></div>
+                    <div class="heart-pulse"></div>
+                    <div class="heart-pulse"></div>
+                    <div class="heart-pulse"></div>
                     <div class="heart"></div>
                 </div>
 
@@ -746,16 +959,56 @@
         // Custom Cursor
         const cursor = document.querySelector('.cursor');
         const follower = document.querySelector('.cursor-follower');
+        const orbit1 = document.getElementById('orbit1');
+        const orbit2 = document.getElementById('orbit2');
+        const orbit3 = document.getElementById('orbit3');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let angle1 = 0;
+        let angle2 = 120;
+        let angle3 = 240;
 
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
             
             setTimeout(() => {
-                follower.style.left = e.clientX + 'px';
-                follower.style.top = e.clientY + 'px';
+                follower.style.left = mouseX + 'px';
+                follower.style.top = mouseY + 'px';
             }, 50);
         });
+
+        // Animate cursor orbits
+        function animateOrbits() {
+            const radius = 25;
+            
+            angle1 += 2;
+            angle2 += 2;
+            angle3 += 2;
+            
+            const x1 = mouseX + Math.cos(angle1 * Math.PI / 180) * radius;
+            const y1 = mouseY + Math.sin(angle1 * Math.PI / 180) * radius;
+            
+            const x2 = mouseX + Math.cos(angle2 * Math.PI / 180) * radius;
+            const y2 = mouseY + Math.sin(angle2 * Math.PI / 180) * radius;
+            
+            const x3 = mouseX + Math.cos(angle3 * Math.PI / 180) * radius;
+            const y3 = mouseY + Math.sin(angle3 * Math.PI / 180) * radius;
+            
+            orbit1.style.left = x1 + 'px';
+            orbit1.style.top = y1 + 'px';
+            orbit2.style.left = x2 + 'px';
+            orbit2.style.top = y2 + 'px';
+            orbit3.style.left = x3 + 'px';
+            orbit3.style.top = y3 + 'px';
+            
+            requestAnimationFrame(animateOrbits);
+        }
+        animateOrbits();
 
         // Generate Stars
         const starsContainer = document.querySelector('.stars');
@@ -778,6 +1031,54 @@
             particle.style.animationDuration = (10 + Math.random() * 10) + 's';
             particlesContainer.appendChild(particle);
         }
+
+        // Generate Matrix Rain
+        const matrixContainer = document.querySelector('.matrix-rain');
+        const characters = '01ハザエルHAZEL<3♥';
+        
+        for (let i = 0; i < 30; i++) {
+            const column = document.createElement('div');
+            column.className = 'matrix-column';
+            column.style.left = Math.random() * 100 + '%';
+            column.style.animationDuration = (10 + Math.random() * 20) + 's';
+            column.style.animationDelay = Math.random() * 5 + 's';
+            
+            let text = '';
+            for (let j = 0; j < 20; j++) {
+                text += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+            }
+            column.innerHTML = text;
+            matrixContainer.appendChild(column);
+        }
+
+        // Generate Geometric Shapes
+        const shapesContainer = document.querySelector('.geometric-shapes');
+        const shapeTypes = ['circle', 'square', 'triangle'];
+        
+        for (let i = 0; i < 20; i++) {
+            const shape = document.createElement('div');
+            shape.className = 'shape ' + shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
+            shape.style.left = Math.random() * 100 + '%';
+            shape.style.setProperty('--x-offset', (Math.random() * 200 - 100) + 'px');
+            shape.style.animationDelay = Math.random() * 20 + 's';
+            shape.style.animationDuration = (15 + Math.random() * 10) + 's';
+            shapesContainer.appendChild(shape);
+        }
+
+        // Generate Data Stream on Card
+        const dataStreamContainer = document.getElementById('dataStream');
+        const dataChars = '01';
+        
+        setInterval(() => {
+            const bit = document.createElement('div');
+            bit.className = 'data-bit';
+            bit.textContent = dataChars[Math.floor(Math.random() * dataChars.length)].repeat(50);
+            bit.style.top = Math.random() * 100 + '%';
+            bit.style.animationDuration = (3 + Math.random() * 2) + 's';
+            dataStreamContainer.appendChild(bit);
+            
+            setTimeout(() => bit.remove(), 4000);
+        }, 300);
 
         // Handle Yes Response
         function handleYes() {
