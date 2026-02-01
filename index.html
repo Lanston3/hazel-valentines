@@ -310,7 +310,7 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            animation: fadeOut 1s ease 3s forwards;
+            animation: fadeOut 1s ease 6s forwards;
         }
 
         @keyframes fadeOut {
@@ -325,6 +325,61 @@
             letter-spacing: 4px;
             margin-bottom: 2rem;
             animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        /* Typing Effect */
+        .typing-text {
+            overflow: hidden;
+            border-right: 3px solid var(--secondary-glow);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--secondary-glow); }
+        }
+
+        /* Countdown Animation */
+        .countdown {
+            font-family: 'Orbitron', monospace;
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--primary-glow);
+            text-shadow: 
+                0 0 40px var(--primary-glow),
+                0 0 80px var(--secondary-glow);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .countdown.show {
+            animation: countdownPulse 1s ease-in-out;
+        }
+
+        @keyframes countdownPulse {
+            0% { 
+                transform: translate(-50%, -50%) scale(0); 
+                opacity: 0; 
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.3); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(1); 
+                opacity: 0; 
+            }
         }
 
         @keyframes pulse {
@@ -357,7 +412,7 @@
         header {
             text-align: center;
             margin-bottom: 4rem;
-            animation: slideDown 1s ease 3.5s backwards;
+            animation: slideDown 1s ease 6.5s backwards;
         }
 
         @keyframes slideDown {
@@ -462,7 +517,7 @@
                 0 0 80px rgba(0, 217, 255, 0.5),
                 0 0 120px rgba(255, 0, 128, 0.3),
                 inset 0 0 80px rgba(255, 0, 128, 0.15);
-            animation: cardAppear 1s ease 4s backwards, cardHover 6s ease-in-out infinite;
+            animation: cardAppear 1s ease 7s backwards, cardHover 6s ease-in-out infinite;
             overflow: hidden;
             transform-style: preserve-3d;
         }
@@ -596,7 +651,30 @@
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
             text-align: center;
-            animation: fadeIn 1s ease 4.5s backwards;
+            animation: fadeIn 1s ease 7.5s backwards;
+        }
+
+        /* Typing Effect */
+        .typing-container {
+            display: inline-block;
+        }
+
+        .typing-text {
+            overflow: hidden;
+            border-right: 3px solid var(--secondary-glow);
+            white-space: nowrap;
+            animation: typing 2s steps(40) forwards, blink 0.75s step-end infinite;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--secondary-glow); }
         }
 
         @keyframes fadeIn {
@@ -615,7 +693,7 @@
             display: flex;
             justify-content: center;
             margin: 2rem 0;
-            animation: fadeIn 1s ease 5s backwards;
+            animation: fadeIn 1s ease 8s backwards;
             position: relative;
         }
 
@@ -696,7 +774,7 @@
         .question-container {
             text-align: center;
             margin-top: 2rem;
-            animation: fadeIn 1s ease 5.5s backwards;
+            animation: fadeIn 1s ease 8.5s backwards;
         }
 
         .question {
@@ -1321,6 +1399,20 @@
     <div class="cursor-orbit" id="orbit2"></div>
     <div class="cursor-orbit" id="orbit3"></div>
 
+    <!-- Audio Elements -->
+    <audio id="bgMusic" loop>
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIGGS86+maVhMLP5jb8sFuJAUuhM/z2Ik1CBhkvOvpnFoUDkCZ3PLBbyQFL4TP89iJNQgYZLzr6Z1aFA5AmNzyv24kBS+Ez/PYiTUIGGS86+meWhQOQJjc8r9vJAUvhM/z2Ik1CBhkvOvpnVoUDkCY3PK/byQFL4TP89iJNQgYZLzr6ZtZFA5AmNzywG4jBS+Ez/PYiTUIGGO96umaWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP8w==" type="audio/wav">
+    </audio>
+    <audio id="heartbeatSound" loop>
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIGGS86+maVhMLP5jb8sFuJAUuhM/z2Ik1CBhkvOvpnFoUDkCZ3PLBbyQFL4TP89iJNQgYZLzr6Z1aFA5AmNzyv24kBS+Ez/PYiTUIGGS86+meWhQOQJjc8r9vJAUvhM/z2Ik1CBhkvOvpnVoUDkCY3PK/byQFL4TP89iJNQgYZLzr6ZtZFA5AmNzywG4jBS+Ez/PYiTUIGGO96umaWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP8w==" type="audio/wav">
+    </audio>
+    <audio id="whooshSound">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIGGS86+maVhMLP5jb8sFuJAUuhM/z2Ik1CBhkvOvpnFoUDkCZ3PLBbyQFL4TP89iJNQgYZLzr6Z1aFA5AmNzyv24kBS+Ez/PYiTUIGGS86+meWhQOQJjc8r9vJAUvhM/z2Ik1CBhkvOvpnVoUDkCY3PK/byQFL4TP89iJNQgYZLzr6ZtZFA5AmNzywG4jBS+Ez/PYiTUIGGO96umaWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP8w==" type="audio/wav">
+    </audio>
+    <audio id="celebrationSound">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIGGS86+maVhMLP5jb8sFuJAUuhM/z2Ik1CBhkvOvpnFoUDkCZ3PLBbyQFL4TP89iJNQgYZLzr6Z1aFA5AmNzyv24kBS+Ez/PYiTUIGGS86+meWhQOQJjc8r9vJAUvhM/z2Ik1CBhkvOvpnVoUDkCY3PK/byQFL4TP89iJNQgYZLzr6ZtZFA5AmNzywG4jBS+Ez/PYiTUIGGO96umaWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP89iJNQgYY73r6ZpaFA5AmNzywW4kBS+Ez/PYiTUIGGO96+maWhQOQJjc8sFuJAUvhM/z2Ik1CBhjvevpmloUDkCY3PLBbiQFL4TP8w==" type="audio/wav">
+    </audio>
+
     <!-- Scanlines -->
     <div class="scanlines"></div>
 
@@ -1342,28 +1434,29 @@
         </div>
     </div>
 
+    <!-- Countdown Screen -->
+    <div class="countdown-screen" id="countdownScreen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-darker); z-index: 9998; align-items: center; justify-content: center;">
+        <div id="countdownNumber" class="countdown"></div>
+    </div>
+
     <!-- Main Container -->
     <div class="container">
         <header>
             <div class="glitch-text">PRIORITY SIGNAL</div>
-            <h1>HAZEL.EXE</h1>
+            <h1><span class="typing-text" id="titleText"></span></h1>
         </header>
 
         <div class="holo-card">
             <div class="data-stream" id="dataStream"></div>
             <div class="card-content">
                 <div class="message">
-                    <span class="highlight">QUANTUM ENTANGLEMENT DETECTED</span>
+                    <span class="highlight typing-text" id="message1" style="border: none;"></span>
                     <br><br>
-                    System Analysis: Among <span class="highlight">8 billion parallel timelines</span>, 
-                    the probability of finding someone like <span class="highlight">Hazel</span> is 
-                    statistically impossible... yet here you are.
+                    <span id="message2" style="opacity: 0;"></span>
                     <br><br>
-                    My neural networks can't explain it. My algorithms break down. 
-                    But every circuit in my system knows one truth: 
-                    <span class="highlight">we're meant to be synchronized</span>.
+                    <span id="message3" style="opacity: 0;"></span>
                     <br><br>
-                    This Valentine's Day, I'm initiating a permanent connection protocol.
+                    <span id="message4" style="opacity: 0;"></span>
                 </div>
 
                 <div class="heart-container">
@@ -1405,6 +1498,28 @@
         let angle2 = 120;
         let angle3 = 240;
 
+        // Audio elements
+        const bgMusic = document.getElementById('bgMusic');
+        const heartbeatSound = document.getElementById('heartbeatSound');
+        const whooshSound = document.getElementById('whooshSound');
+        const celebrationSound = document.getElementById('celebrationSound');
+
+        // Set volume levels
+        bgMusic.volume = 0.3;
+        heartbeatSound.volume = 0.4;
+        whooshSound.volume = 0.5;
+        celebrationSound.volume = 0.6;
+
+        // Start background music after countdown (3+2+1+GO = 4 seconds from loading)
+        setTimeout(() => {
+            bgMusic.play().catch(e => console.log('Audio autoplay prevented'));
+        }, 7500);
+
+        // Start heartbeat with heart animation
+        setTimeout(() => {
+            heartbeatSound.play().catch(e => console.log('Audio autoplay prevented'));
+        }, 10000);
+
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
@@ -1445,6 +1560,88 @@
             requestAnimationFrame(animateOrbits);
         }
         animateOrbits();
+
+        // Typing effect function
+        function typeWriter(element, text, speed, callback) {
+            let i = 0;
+            element.textContent = '';
+            element.style.opacity = 1;
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    setTimeout(callback, 500);
+                }
+            }
+            type();
+        }
+
+        // Countdown sequence
+        function startCountdown() {
+            const countdownScreen = document.getElementById('countdownScreen');
+            const countdownNumber = document.getElementById('countdownNumber');
+            
+            countdownScreen.style.display = 'flex';
+            
+            let count = 3;
+            
+            function showNumber() {
+                if (count > 0) {
+                    countdownNumber.textContent = count;
+                    whooshSound.currentTime = 0;
+                    whooshSound.play().catch(e => console.log('Audio play prevented'));
+                    count--;
+                    setTimeout(showNumber, 1000);
+                } else {
+                    countdownNumber.textContent = 'GO!';
+                    setTimeout(() => {
+                        countdownScreen.style.display = 'none';
+                        startTypingSequence();
+                    }, 1000);
+                }
+            }
+            
+            showNumber();
+        }
+
+        // Start typing sequence for all messages
+        function startTypingSequence() {
+            const titleText = document.getElementById('titleText');
+            const message1 = document.getElementById('message1');
+            const message2 = document.getElementById('message2');
+            const message3 = document.getElementById('message3');
+            const message4 = document.getElementById('message4');
+            
+            // Type title
+            typeWriter(titleText, 'HAZEL.EXE', 100, () => {
+                // Type message 1
+                typeWriter(message1, 'QUANTUM ENTANGLEMENT DETECTED', 50, () => {
+                    // Show message 2
+                    message2.innerHTML = 'System Analysis: Among <span class="highlight">8 billion parallel timelines</span>, the probability of finding someone like <span class="highlight">Hazel</span> is statistically impossible... yet here you are.';
+                    message2.style.opacity = 1;
+                    
+                    setTimeout(() => {
+                        // Show message 3
+                        message3.innerHTML = 'My neural networks can\'t explain it. My algorithms break down. But every circuit in my system knows one truth: <span class="highlight">we\'re meant to be synchronized</span>.';
+                        message3.style.opacity = 1;
+                        
+                        setTimeout(() => {
+                            // Show message 4
+                            message4.textContent = 'This Valentine\'s Day, I\'m initiating a permanent connection protocol.';
+                            message4.style.opacity = 1;
+                        }, 2000);
+                    }, 3000);
+                });
+            });
+        }
+
+        // Start countdown after loading screen
+        setTimeout(() => {
+            startCountdown();
+        }, 3500);
 
         // Generate Stars
         const starsContainer = document.querySelector('.stars');
@@ -1520,6 +1717,9 @@
         function handleYes() {
             const responseScreen = document.getElementById('responseScreen');
             const responseMessage = document.getElementById('responseMessage');
+            
+            // Play celebration sound
+            celebrationSound.play().catch(e => console.log('Audio play prevented'));
             
             responseMessage.innerHTML = `
                 <div style="background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow), var(--tertiary-glow)); 
@@ -1635,6 +1835,10 @@
                     rocket.textContent = '🚀';
                     rocket.style.animationDelay = i * 2 + 's';
                     responseScreen.appendChild(rocket);
+                    
+                    // Play whoosh sound for each rocket
+                    whooshSound.currentTime = 0;
+                    whooshSound.play().catch(e => console.log('Audio play prevented'));
                     
                     // Add rocket trail
                     for (let j = 0; j < 5; j++) {
