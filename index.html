@@ -838,6 +838,230 @@
             100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
         }
 
+        /* Dancing Couple Animation */
+        .dancing-couple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 30px;
+            align-items: flex-end;
+            z-index: 100;
+        }
+
+        .dancer {
+            position: relative;
+            animation: dance 1s ease-in-out infinite;
+        }
+
+        .dancer.boy {
+            animation-delay: 0s;
+        }
+
+        .dancer.girl {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes dance {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        /* Boy Character */
+        .boy .head {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--secondary-glow), var(--tertiary-glow));
+            border-radius: 50%;
+            margin: 0 auto 5px;
+            position: relative;
+            box-shadow: 0 0 20px var(--secondary-glow);
+        }
+
+        .boy .head::before {
+            content: '😊';
+            font-size: 35px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .boy .body {
+            width: 70px;
+            height: 90px;
+            background: linear-gradient(180deg, var(--secondary-glow), rgba(0, 217, 255, 0.5));
+            border-radius: 10px 10px 0 0;
+            margin: 0 auto;
+            box-shadow: 0 0 30px var(--secondary-glow);
+            position: relative;
+        }
+
+        .boy .arm {
+            width: 15px;
+            height: 60px;
+            background: var(--secondary-glow);
+            position: absolute;
+            top: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px var(--secondary-glow);
+        }
+
+        .boy .arm.left {
+            left: -12px;
+            animation: armWave 1s ease-in-out infinite;
+        }
+
+        .boy .arm.right {
+            right: -12px;
+            animation: armWave 1s ease-in-out infinite 0.5s;
+        }
+
+        @keyframes armWave {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-30deg); }
+        }
+
+        .boy .leg {
+            width: 20px;
+            height: 70px;
+            background: var(--secondary-glow);
+            position: absolute;
+            bottom: -70px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 0 15px var(--secondary-glow);
+        }
+
+        .boy .leg.left {
+            left: 10px;
+            animation: legKick 1s ease-in-out infinite;
+        }
+
+        .boy .leg.right {
+            right: 10px;
+            animation: legKick 1s ease-in-out infinite 0.5s;
+        }
+
+        @keyframes legKick {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(20deg); }
+        }
+
+        /* Girl Character */
+        .girl .head {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-glow), var(--tertiary-glow));
+            border-radius: 50%;
+            margin: 0 auto 5px;
+            position: relative;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .girl .head::before {
+            content: '😊';
+            font-size: 35px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .girl .head::after {
+            content: '';
+            width: 80px;
+            height: 40px;
+            background: var(--primary-glow);
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .girl .body {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(180deg, var(--primary-glow), rgba(255, 0, 128, 0.5));
+            border-radius: 50% 50% 50% 50%;
+            margin: 0 auto;
+            box-shadow: 0 0 30px var(--primary-glow);
+            position: relative;
+            animation: dressFlow 1s ease-in-out infinite;
+        }
+
+        @keyframes dressFlow {
+            0%, 100% { border-radius: 50% 50% 50% 50%; transform: scale(1); }
+            50% { border-radius: 45% 55% 45% 55%; transform: scale(1.05); }
+        }
+
+        .girl .arm {
+            width: 15px;
+            height: 60px;
+            background: var(--primary-glow);
+            position: absolute;
+            top: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .girl .arm.left {
+            left: -12px;
+            animation: armWave 1s ease-in-out infinite 0.25s;
+        }
+
+        .girl .arm.right {
+            right: -12px;
+            animation: armWave 1s ease-in-out infinite 0.75s;
+        }
+
+        .girl .leg {
+            width: 20px;
+            height: 70px;
+            background: var(--primary-glow);
+            position: absolute;
+            bottom: -70px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .girl .leg.left {
+            left: 15px;
+            animation: legKick 1s ease-in-out infinite 0.25s;
+        }
+
+        .girl .leg.right {
+            right: 15px;
+            animation: legKick 1s ease-in-out infinite 0.75s;
+        }
+
+        /* Hearts floating around dancers */
+        .love-heart {
+            position: absolute;
+            font-size: 30px;
+            animation: floatHeart 3s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
@@ -1089,7 +1313,8 @@
                 <div style="background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow), var(--tertiary-glow)); 
                             -webkit-background-clip: text; 
                             -webkit-text-fill-color: transparent; 
-                            background-clip: text;">
+                            background-clip: text;
+                            margin-bottom: 3rem;">
                     ⚡ PROTOCOL ACTIVATED ⚡
                     <br><br>
                     CONNECTION ESTABLISHED
@@ -1102,10 +1327,31 @@
                         VALENTINE'S DAY SEQUENCE INITIATED...
                     </div>
                 </div>
+                <div class="dancing-couple">
+                    <div class="dancer boy">
+                        <div class="head"></div>
+                        <div class="body">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                    <div class="dancer girl">
+                        <div class="head"></div>
+                        <div class="body">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
             `;
             
             responseScreen.classList.add('active');
             createFireworks();
+            createFloatingHearts();
         }
 
         // Create Fireworks
@@ -1137,6 +1383,26 @@
                     setTimeout(() => firework.remove(), 1000);
                 }
             }, 500);
+        }
+
+        // Create Floating Hearts around dancers
+        function createFloatingHearts() {
+            const responseMessage = document.getElementById('responseMessage');
+            const heartEmojis = ['💖', '💕', '💗', '💓', '💝', '❤️', '💘'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'love-heart';
+                heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                heart.style.left = (30 + Math.random() * 40) + '%';
+                heart.style.bottom = '20%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.animationDuration = (2 + Math.random() * 2) + 's';
+                
+                responseMessage.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 4000);
+            }, 400);
         }
 
         // Handle No Response (make button run away)
